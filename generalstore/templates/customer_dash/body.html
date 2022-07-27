@@ -1,0 +1,61 @@
+
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Gas Booking</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{%static 'dash/img/favicon.png'%}" rel="icon">
+  <link href="{%static 'dash/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{%static 'dash/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/boxicons/css/boxicons.min.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/quill/quill.snow.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/quill/quill.bubble.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/remixicon/remixicon.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/simple-datatables/style.css'%}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'dash/css/style.css'%}" rel="stylesheet">
+  
+</head>
+
+<body>
+
+  {%include 'customer_dash/sidebar.html'%}
+  {%include 'customer_dash/header.html'%}
+  
+
+ 
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'dash/vendor/apexcharts/apexcharts.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/chart.js/chart.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/echarts/echarts.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/quill/quill.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/simple-datatables/simple-datatables.js'%}"></script>
+  <script src="{% static 'dash/vendor/tinymce/tinymce.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/php-email-form/validate.js'%}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{%static 'dash/js/main.js'%}"></script>
+
+</body>
+
+</html>

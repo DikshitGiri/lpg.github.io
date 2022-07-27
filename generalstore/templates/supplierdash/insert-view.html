@@ -1,0 +1,90 @@
+
+{%for message in messages%}
+<script>
+    alert('{{message}}');
+</script>
+{%endfor %}
+
+{% load crispy_forms_filters %}
+<div class="col-xl-8 col-md-12 " id="insert-view">
+    <div class="card table-card">
+        <div class="card-header">
+            <h5>Stock</h5>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                    <li><i class="fa fa-minus minimize-card"></i></li>
+                    <li><i class="fa fa-refresh reload-card"></i></li>
+                    <li><i class="fa fa-trash close-card"></i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th>Sn</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th >Date Created</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                        {%for data in alldata%}
+                        <tr>
+                            <td>{{ forloop.counter0 }}
+                            </td>
+                            <td>{{data.category}}
+                               </td>
+                       
+                            <td>{{data.quantity}}
+                            </td>
+                            <td>{{data.created_at}}
+                            </td>
+                            <td><a href="{%url 'gasupdate' data.id %}"><i class="ti-clipboard" style="font-size: 20px;" ></i></a>
+                            
+                            </div></i><a href="{%url 'gasdelete' data.id %}"><i class="ti-trash" style="font-size: 20px;"></i></a>
+                            </td>
+                        </tr>
+                     </tbody>
+                    {%endfor%}
+                    
+                </table>
+               
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-4 col-md-12">
+    <div class="card ">
+        <div class="card-header">
+            <h5>Add new entry</h5>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                    <li><i class="fa fa-minus minimize-card"></i></li>
+                    <li><i class="fa fa-refresh reload-card"></i></li>
+                    <li><i class="fa fa-trash close-card"></i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{%url 'gasentry'%}">
+            {%csrf_token%}
+           
+            {{newentry|crispy}}
+            <button class="btn btn-primary" type="submit">insert</button>        
+            
+            
+            
+</div>     
+           
+        </div>
+    </div>
+</div>

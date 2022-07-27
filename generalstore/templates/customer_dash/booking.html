@@ -1,0 +1,123 @@
+
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{%for message in messages%}
+<script>
+  alert('{{message}}')
+</script>
+{%endfor%}
+
+<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Gas Booking</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{%static 'dash/img/favicon.png'%}" rel="icon">
+  <link href="{%static 'dash/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Vendor CSS Files -->
+  <link href="{%static 'dash/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/boxicons/css/boxicons.min.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/quill/quill.snow.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/quill/quill.bubble.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/remixicon/remixicon.css'%}" rel="stylesheet">
+  <link href="{%static 'dash/vendor/simple-datatables/style.css'%}" rel="stylesheet">
+  
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'dash/css/style.css'%}" rel="stylesheet">
+  
+</head>
+
+<body>
+
+  {%include 'customer_dash/sidebar.html'%}
+  {%include 'customer_dash/header.html'%}
+  
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Book Gas</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+  
+    <form method="POST" action="{%url 'gasordered'%}" >
+        {%csrf_token%}
+        
+          <input type="text" class="form-control"  hidden name="supplier_name" value="{{id.supplier}}" {{id.supplier}}>
+          <label for="inputname">Your Name</label>
+
+          <input type="text" class="form-control" name="customer_name" value="{{request.user}}" {{request.user}}>
+          <label for="inputname">Your Contact</label>
+          <input type="text" class="form-control" name="customer_contact" placeholder="Enter Contact Number">
+          <label for="inputname">Required category</label>
+          <input type="text" class="form-control" name="category" value={{id.categogry}} {{id.category}}>
+          <label for="inputname">Required quantity</label>
+          <input type="number" class="form-control" name="quantity" placeholder="Enter required Quantity">
+          <label for="inputname">Customer adddress</label>
+          <input type="text" class="form-control" name="address" value="{{id.complete_firm_address}}"  {{ id.complete_firm_address}} >
+          <label>How would you like to get</label>
+          <select name="getby" class=" form-select "  aria-label="Default select example">
+          
+          <!-- <option>please select how you would like to get it </option> -->
+          
+          <option class="form-control" value="visit to supplier">Visit to supplier</option>
+          <option class="form-control" value="home delivery">Home delivery</option>
+            
+          </select><br>
+        
+    
+
+       
+          
+        
+        
+          
+        <button type="submit" class="btn btn-outline-primary">Book</button>
+      </form>
+
+
+    </main>
+       
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'dash/vendor/apexcharts/apexcharts.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/chart.js/chart.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/echarts/echarts.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/quill/quill.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/simple-datatables/simple-datatables.js'%}"></script>
+  <script src="{% static 'dash/vendor/tinymce/tinymce.min.js'%}"></script>
+  <script src="{% static 'dash/vendor/php-email-form/validate.js'%}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{%static 'dash/js/main.js'%}"></script>
+
+</body>
+
+</html>

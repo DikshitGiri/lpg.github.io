@@ -1,0 +1,59 @@
+{%load static%}
+<!-- links -->
+<!-- Font Awesome -->
+<!-- {%for message in messages%} -->
+<script>
+  alert('{{message}}');
+</script>
+<!-- {%endfor%} -->
+<link
+  href="{% static 'assets/mdb5/css/mdb.min.css'%}" rel="stylesheet"/>
+
+
+
+<section class="vh-50">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-6 col-lg-6 col-xl-6">
+        <img src="{%static 'img/logo/new.jpg' %}"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form method="POST" action="{%url 'supplier'%}">
+          {% csrf_token %}
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-center">
+            <p class="lead fw-normal mb-0 me-3">Sign in </p>
+            </div><br>
+           
+
+            
+
+          <!-- Email input -->
+     
+              <label  >username</label>
+            <input type="text" name="username" id="username" class="form-control form-control-lg"
+              placeholder="Enter Username" />
+            
+
+
+          <!-- Password input -->
+         
+            <label  >password</label>
+            <input type="password"  name= "password" id="password" class="form-control"placeholder="Enter password" />
+           
+     
+
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <input type="submit" value="Login" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">
+            
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+   
+</section>

@@ -1,0 +1,92 @@
+{%load static%}
+{% load crispy_forms_filters %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Suppliers</title>
+
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="{%static 'assets1/pages/waves/css/waves.min.css' %}" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="{%static 'assets1/css/bootstrap/css/bootstrap.min.css'%}">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="{%static 'assets1/pages/waves/css/waves.min.css'%}" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="{%static 'assets1/icon/themify-icons/themify-icons.css'%}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="{%static 'assets1/icon/font-awesome/css/font-awesome.min.css'%}">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="{%static 'assets1/css/jquery.mCustomScrollbar.css'%}">
+    <!-- am chart export.css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{%static 'assets1/css/style.css'%}">
+</head>
+
+<body>
+    {%include 'supplierdash/preloader.html'%}
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            {%include 'supplierdash/navbar.html'%}
+            {%include 'supplierdash/sidebar.html'%}
+
+            {%include 'supplierdash/pageheader.html'%}
+
+            <div class="pcoded-inner-content">
+
+                <div class="main-body"></div>
+                <!-- Main-body start -->
+
+                <div class="page-wrapper">
+                    <!-- Page-body start -->
+                    <div class="page-body">
+                        <div class="row " style="margin-left:200px ;margin-top:50px">
+                            
+                            <div class="col-xl-10 col-md-9">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>update data</h5>
+                                        
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST">
+                                            {%csrf_token%}
+                            
+                                            {{toupdate|crispy}}
+                                            <button class="btn btn-primary" type="submit">update</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                    <!-- Page-body end -->
+                </div>
+                <div id="styleSelector"> </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- effects start -->
+    {%include 'supplierdash/effects.html'%}
+    <!-- effects end -->
+
+
+</body>
+
+</html>

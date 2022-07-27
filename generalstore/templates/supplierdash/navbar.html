@@ -1,0 +1,110 @@
+{%load static%}
+ <nav class="navbar header-navbar pcoded-header ">
+              <div class="navbar-wrapper">
+                  <div class="navbar-logo">
+                      <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
+                          <i class="ti-menu"></i>
+                      </a>
+                      
+                      
+                          <h4 style="color:white">LP-GAS</h4>
+                      
+                      <a class="mobile-options waves-effect waves-light">
+                          <i class="ti-more"></i>
+                      </a>
+                  </div>
+                
+                  <div class="navbar-container container-fluid">
+                      <ul class="nav-left">
+                          <li>
+                              <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                          </li>
+                          <li class="header-search">
+                              <div class="main-search morphsearch-search">
+                                  <div class="input-group">
+                                      <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                      
+                                      
+                                  </div>
+                              </div>
+                          </li>
+                          <li>
+                              <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                                  <i class="ti-fullscreen"></i>
+                              </a>
+                          </li>
+                      </ul>
+                      <ul class="nav-right">
+                          <li class="header-notification">
+                              <a href="#!" class="waves-effect waves-light">
+                                <i class="ti-bell"></i>
+                                Notifications
+                                <label class="label label-danger">{{pending}}</label>
+                              </a>
+                              <ul class="show-notification">
+                                  <li>
+                                      <h6>Notifications</h6>
+                                      <label class="label label-danger">{{pending}}</label>
+                                  </li>
+                                  <li class="waves-effect waves-light">
+                                      <div class="media">
+          
+                                        <div class="media-body">
+                                            
+                                            {%for data in notification%}                         
+                                            
+                                            
+                                            New order from:<h6>{{data.Customer_name}}</h6>
+                                            required-gas:<h6 >{{data.gas_category}}</h6>
+                                            quantity-required:<h6 >{{data.required_quantity}}</h6>
+                                            customer-address:<h6>{{data.customer_address}}</h6>
+                                            customer-contact:<h6 >{{data.customer_contact}}</h6> 
+                                            get by:<h6>{{data.getby}}</h6>
+                                            <form method="POST" action="{% url 'status' %}">                                            
+                                            {%csrf_token%}
+                                            <input type="text" hidden value="{{data.id}}" name="id">
+                                            <button type="submit" name="status" value="accepted">accept</button> <button type="submit" name="status" value="rejected">reject</button>
+                                            </form>
+
+                                            {%endfor%}
+                                            
+                                           
+                                           
+
+                                         
+                                           
+                                              <!-- <span class="notification-time">30 minutes ago</span> -->
+                                          </div>
+                                           
+                                            
+                                      </div>
+                                  </li>
+                                  
+                              </ul>
+                          </li>
+                          <li class="user-profile header-notification">
+                              <a href="#!" class="waves-effect waves-light">
+                                  <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
+                                  <span>{{ request.user.username }}</span>
+                                  <i class="ti-angle-down"></i>
+                              </a>
+                              <ul class="show-notification profile-notification">
+                                  <li class="waves-effect waves-light">
+                                      <a href="#!">
+                                          <i class="ti-settings"></i> Settings
+                                      </a>
+                                  </li>
+                                  
+                                  <li class="waves-effect waves-light">
+                                      <a href="{%url 'supplierout'%}">
+                                          <i class="ti-layout-sidebar-left"></i> Logout
+                                      </a>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+
+         

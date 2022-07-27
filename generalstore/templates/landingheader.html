@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_filters %}
+{%load static %}
+{%for messages in messages %}
+<script>
+alert('{{ messages }}');
+</script>
+{%endfor%}
+<style>
+.card{
+    margin-bottom: 10px;
+    margin-inline: 6px;
+   
+}
+</style>
+<body background="{%static 'img/wallpaper.jpg'%} " style="  background-attachment: fixed; background-size: cover; background-repeat: no-repeat;background-size: auto;">
+<div class="container">
+<header>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark"  >
+   
+     
+
+        <a class="navbar-brand " href="#">LPG</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link active text-light " href="{%url 'landingheader'%}" style="font-size:large; color:white;">Home</a>
+                </li>
+               
+                <li class="nav-item ">
+                    <a class="nav-link text-light" href="#about_us">About Us</a>
+                </li>
+               
+                <li class="nav-item ">
+                    <a class="nav-link text-light" href="#contact_us">Contact Us</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+            <button class="btn btn-light ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal" >Login</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup">SignUp</button>
+
+          </div>
+        </div>
+    
+    </nav>
+
+            
+
+
+  <div class="modal fade"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form method="post" action="{% url 'login'%}">
+      {%csrf_token%}
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color:rgb(250, 250, 250)">
+      <div class="modal-header">
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" >
+        <div style="color:rgb(1, 1, 15);font:bold;font-size:large;">
+      
+    
+      <div><label>username</label><input type='text' name="username" placeholder="name" class="form-control" required></div><br>
+       <div><label>password</label><input type='password' name="password" class="form-control" required ></div>
+       </div>
+      </div>
+      <div class="modal-footer">
+       
+       <button type="submit" class="btn btn-success">Login</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+
+
+<form method="post" action="{% url 'register'%}">
+    {%csrf_token%}
+  <div class="modal fade"  id="signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color:rgb(250, 250, 250)">
+      <div class="modal-header">
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" >
+        <div style="color:rgb(1, 1, 15);font:bold;font-size:large;">
+ 
+      {{form|crispy}}
+     
+     
+      
+      
+     
+      </div></div>
+      <div class="modal-footer">
+       <br>
+        <button type="submit" class="btn btn-success"  >Submit</button><br>
+          
+      </div>
+    </div>
+  </div>
+</div>
+
+                
+    
+
+
+</form></header><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+<!-- {%for data in cate%}
+{{data.category}}
+{%endfor%} -->
+<section>
+<div class="row">
+<img src="{%static 'img/oil_tanker.jpg'%}">
+</div><br><br>
+  <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'search'%}">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col align-self-start ">
+        <select name="category" class=" form-select " style="border-radius: 20px;" aria-label="Default select example">
+          <option>please select required gas</option>
+          {%for data in cate%}
+          <option class="form-control"  value="{{data.id}}">{{data}}</option>
+          {%endfor%}
+        </select>
+      </div>
+      
+      <div class="col align-self-end">
+        <input class="form-control" style="border-radius: 20px;" type="text" name="address" placeholder="your address">
+      </div>
+
+    </div><br>
+    <div class="row">
+      <div class="col align-self-start">
+
+      </div>
+      <div class="col align-self-end">
+        <input style="border-radius: 20px;" class="form-control btn btn-outline-success" type="submit">
+      </div>
+      <div class="col align-self-end">
+
+      </div>
+  </div>
+
+
+
+</form><br><br><br>
+
+
+
+
+<!-- the search result is shown here -->
+<style>
+  h6{
+    text-decoration:underline;
+  }
+</style>
+
+<div class="row ">
+{% for info in data %}
+<div class="card" style="width: 350px;" >
+ <form method="POST" action="{%url 'bookgas' %}">
+  {% csrf_token %}
+  <h6 style="align-self: center; color: blue;"><div class="card-title" >{{info.supplier}}</div></h6> 
+ 
+  </style>
+  <div class="card-body"> 
+  <p><h6>Contact</h6>{{info.firm_contact}}</p>
+  <p><h6>Category</h6>{{info.category}}</p>
+  <p><h6>Quantity</h6>{{info.quantity}}</p>
+  <p><h6>Address</h6>{{info.complete_firm_address}}</p>
+  </div>
+  <div class="card-footer">
+    <input type="number" hidden name="id" value="{{info.id}}"></div>
+    <button type="submit" class="btn btn-outline-success col-sm-12" >book now</button> 
+  
+    </form>
+    <a href="/landingheader"><button class="btn btn-outline-primary col-sm-12 align">Cancel</button></a>
+    </div>
+ 
+{%endfor%}
+
+</div>
+</section><br><br>
+<!-- <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav> -->
+
+<footer>
+<div class="row">
+<div id="about_us"><h6 style="color: white;"> developers: Dikshit Giri & Kedar Bon </h6></div>
+<div id="contact_us"><h6 style="color: white;">List of available contacts:<br>Email:onlinegas@gmail.com</h6></div>
+<p style="color: white;">
+</div>
+</footer>
+</div>
+
+
+<div class="modal fade" id="gasform" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color:rgb(250, 250, 250)">
+      <div class="modal-header">
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div style="color:rgb(1, 1, 15);font:bold;font-size:large;">
+          <h6>You must be logeed in for booking</h6>
+          <button class="btn btn-light ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+       
+
+
+          
+
+
+
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <br>
+        <h6 >Dont have an account..?</h6>
+        <button class="btn btn-light ms-3" data-bs-toggle="modal" data-bs-target="#signup">register</button><br>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{%endblock%}
